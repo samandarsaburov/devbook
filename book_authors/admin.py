@@ -10,7 +10,7 @@ admin.site.register(GenreModel)
 #  Auther admin
 class AutherAdmin(admin.ModelAdmin):
     # pass
-    list_display= ['first_name','last_name','date_of_brth','place_of_birth','Date_of_death','Place_of_death','images','bio','genre','user']
+    list_display= ['first_name','last_name','date_of_brth','place_of_birth','date_of_death','place_of_death','images','bio','genre','user']
     search_fields = ['first_name','']
     
 admin.site.register(AutherModel, AutherAdmin)

@@ -18,12 +18,12 @@ class AutherModel(models.Model):
     last_name = models.CharField(max_length=25)
     date_of_brth = models.DateField(null= True, blank=True)
     place_of_birth = models.CharField(max_length=50,default='')
-    Date_of_death = models.DateField(null=True, blank=True)
-    Place_of_death = models.CharField(max_length=50, default='')
+    date_of_death = models.DateField(null=True, blank=True)
+    place_of_death = models.CharField(max_length=50, default='')
     images = models.ImageField(upload_to='auther/',blank=True, null=True)
     bio = models.TextField(default='')
     genre =models.ForeignKey(GenreModel,on_delete=models.CASCADE,default='')
-    user = models.ForeignKey(CustomUser,on_delete = models.CASCADE , default='')
+    user = models.ForeignKey(CustomUser,on_delete = models.CASCADE, default= 2)
     def __str__(self) -> str:
         return self.first_name    
     class Meta:
@@ -40,7 +40,7 @@ class BookModel(models.Model):
     bio = models.TextField()
     auther = models.ForeignKey(AutherModel, on_delete=models.CASCADE,default= '')
     genre =models.ForeignKey(GenreModel,on_delete=models.CASCADE,default='')
-    user = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
+    user = models.ForeignKey(CustomUser,on_delete = models.CASCADE, default=2)
     def __str__(self) -> str:
         return self.title
     class Meta:

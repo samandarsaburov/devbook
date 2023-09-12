@@ -17,21 +17,22 @@ class GenreSerializers(ModelSerializer):
 class AutherSerializer(ModelSerializer):
     class Meta:
         model = AutherModel
-        fields = ('id','first_name','last_name','date_of_brth','place_of_birth','date_of_death','place_of_death','images','bio','genre')
+        fields = ('id','first_name','last_name','date_of_brth','place_of_birth','date_of_death','place_of_death','images','bio','genre','user')
 
-    # def create(self, validated_data):
-    #     # print(self.context['request'].user.id)
-    #     validated_data['user'] = CustomUser.objects.get(user=self.context['request'].user)
-    #     return super(AutherSerializer, self).create(validated_data)
+    def create(self, validated_data):
+        print(self.context['request'].user.id)
+        validated_data['user'] = get_object_or_404(CustomUser, id=self.context['request'].user.id)
+        return super(AutherSerializer,self).create(validated_data)
     
 
 #  Book Serializer
 class BookSerializer(ModelSerializer):
     class Meta:
         model = BookModel
-        fields = ('title','pages','year','price','genre','images','auther','bio','user')
+        fields = ('title','pages','year','price','genre','images','auther','bio')
     
     
-    # def create(self, validated_data):
-    #     validated_data['auther'] = get_object_or_404(AutherModel, user=self.context['request'])
-    #     return super(BookSerializer,self).create(validated_data)
+    def create(self, validated_data):
+        print(self.context['request'])
+        validated_data['auther'] = get_object_or_404(AutherModel, user=self.context['request'].user)
+        return super(BookSerializer,self).create(validated_data)

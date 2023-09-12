@@ -31,6 +31,8 @@ class AuthersListViews(generics.ListAPIView):
     serializer_class = AutherSerializer
     permission_classes = (IsAuthenticated,)
     
+    
+    
 
 class AuthersCreateViews(generics.CreateAPIView):
     queryset = AutherModel.objects.all()

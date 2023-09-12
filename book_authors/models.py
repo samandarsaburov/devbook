@@ -23,7 +23,7 @@ class AutherModel(models.Model):
     images = models.ImageField(upload_to='auther/',blank=True, null=True)
     bio = models.TextField(default='')
     genre =models.ForeignKey(GenreModel,on_delete=models.CASCADE,default='')
-    user = models.ForeignKey(CustomUser,on_delete = models.CASCADE, default= 2)
+    user = models.ForeignKey(CustomUser,on_delete = models.CASCADE, default= '')
     def __str__(self) -> str:
         return self.first_name    
     class Meta:
